@@ -1,4 +1,4 @@
-# Based on ruby
+#Based on ruby
 FROM ruby:2.4
 
 # Name 
@@ -30,8 +30,8 @@ RUN bundle install
 # Copy the project
 COPY . .
 
-# Create the rails app
-RUN rails new $APP_PATH
-
-# Migrate the db
-RUN rake db:create && rake db:migrate
+# Create the rails app if doesn't exist or just migrate the database
+RUN if rails new $APP_PATH; \
+	then echo "Rails app created!"; \
+	else rake db:create && rake db:migrate; \
+	fi

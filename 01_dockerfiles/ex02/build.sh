@@ -1,3 +1,3 @@
 #! /bin/sh
 
-docker build -t ft-rails:on-build .
+docker build -t nirae/ft-rails:on-build .
